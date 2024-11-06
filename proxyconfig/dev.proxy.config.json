@@ -1,0 +1,7 @@
+{
+    "/**":{
+        "target":"https://projectapi.gerasim.in",
+        "secure":true,
+        "changeOrigin":false
+    }
+}
