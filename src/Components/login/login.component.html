@@ -1,0 +1,9 @@
+<div class="login-clean">
+    <form #loginForm="ngForm" (submit)="Login()">
+        <h2 class="sr-only text-center">Login Form</h2>
+        <div class="form-group"><input class="form-control my-2"   [(ngModel)]="loginObj.userName" type="email" name="userName" required placeholder="enter any mail just for test"></div>
+        <div class="form-group"><input class="form-control" [(ngModel)]="loginObj.password" name="password" type="password" name="password" required placeholder="enter any pass just for test">
+        </div>
+        <button class="btn btn-outline-info form-control mt-2 " [disabled]="!loginForm.valid" type="submit">Log In</button>
+    </form>
+</div>

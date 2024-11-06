@@ -1,0 +1,102 @@
+<div class="container my-4">
+    <!-- Employees Tab -->
+    <div class="tab-pane fade show active" id="employees" role="tabpanel">
+        <!-- Employee Form -->
+        <form class="mb-4" #newEmployee="ngForm" (submit)="addEditNewEmployee()">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="employeeName" class="form-label">Employee Name</label>
+                    <input type="text" [(ngModel)]="Employee.employeeName" required name="employeeName" class="form-control" id="employeeName" placeholder="Enter employee name">
+                </div>
+                <div class="col-md-6">
+                    <label for="contactNo" class="form-label">Contact No</label>
+                    <input type="text" class="form-control" [(ngModel)]="Employee.contactNo" name="contactNo" required  id="contactNo" placeholder="Enter contact number">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="emailId" class="form-label">Email</label>
+                    <input type="email" [(ngModel)]="Employee.emailId" name="emailId" required class="form-control" id="emailId" placeholder="Enter email">
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="deptId" class="form-label">Parent Department</label>
+                            <select class="form-select" (change)="chilDepartments()" name="selectedParentDeoartmentId" [(ngModel)]="selectedParentDepartmentId">
+                                <option *ngFor="let parentDept of parentDepartments"  [value]="parentDept.departmentId" >{{parentDept.departmentName}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="childDeptId" class="form-label">Child Department</label>
+                            <select class="form-select"   name="deptId" [(ngModel)]="Employee.deptId">
+                                <option *ngFor="let childDept of childDepartments"  [value]="childDept.childDeptId" >{{childDept.departmentName}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" [(ngModel)]="Employee.password" name="password" required  class="form-control" id="password" placeholder="Enter password">
+                </div>
+                <div class="col-md-6">
+                    <label for="role" class="form-label">Role</label>
+                    <input type="text" [(ngModel)]="Employee.role" name="role" required class="form-control" id="role" placeholder="Enter role">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select id="gender" name="gender" [(ngModel)]="Employee.gender" class="form-select">
+                        <option selected>Select gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" [disabled]="!newEmployee.valid" class="btn btn-outline-info form-control mt-3">Submit</button>
+        </form>
+
+        <!-- Employee Table -->
+        <h3>Employee List</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="text-center">
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Contact No</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Role</th>
+                    <th>Gender</th>
+                    <th>Created Date</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let emp of Employees">
+                    <td class="text-center lead">{{emp.employeeId}}</td>
+                    <td class="text-center lead">{{emp.employeeName}}</td>
+                    <td class="text-center lead">{{emp.contactNo}}</td>
+                    <td class="text-center lead">{{emp.emailId}}</td>
+                    <td class="text-center lead">{{emp.deptId}}</td>
+                    <td class="text-center lead">{{emp.role}}</td>
+                    <td class="text-center lead">{{emp.gender}}</td>
+                    <td class="text-center lead">{{emp.createdDate | date:'dd/MM/yyyy' }}</td>
+                    <td class="text-center lead"><button class="btn btn-outline-info" (click)="updateEmployee(emp.employeeId)" >Edit</button></td>
+                    <td class="text-center lead"><button class="btn btn-outline-danger" (click)="deleteEmployee(emp.employeeId)">Delete</button></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+
+

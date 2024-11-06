@@ -1,0 +1,65 @@
+<div class="container my-4">
+    <!-- Project Employees Tab -->
+    <div class="tab-pane fade show active" id="project-employees" role="tabpanel">
+        <h2>Project Employees</h2>
+
+        <!-- Project Employee Form -->
+        <form class="mb-4" #newProjEmp="ngForm" (submit)="AddProjEmp()">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="leadByEmpId" class="form-label">Project ID</label>
+                    <select class="form-select" name="projectId" [(ngModel)]="projEmpObj.projectId">
+                        <option *ngFor="let proj of Projects" [value]="proj.projectId">{{proj.projectName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="leadByEmpId" class="form-label">Employee ID</label>
+                    <select class="form-select" name="empId" [(ngModel)]="projEmpObj.empId">
+                        <option *ngFor="let emp of Employees" [value]="emp.employeeId">{{emp.employeeName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="assignedDate" class="form-label">Assigned Date</label>
+                    <input type="date" [(ngModel)]="projEmpObj.assignedDate" required name="assignedDate"   class="form-control" id="assignedDate">
+                </div>
+                <div class="col-md-6">
+                    <label for="roleProjectEmployee" class="form-label">Role</label>
+                    <input type="text" [(ngModel)]="projEmpObj.role" required name="role" class="form-control" id="roleProjectEmployee" placeholder="Enter role">
+                </div>
+            </div>
+            <button type="submit" [disabled]="!newProjEmp.valid"  class="btn btn-outline-info form-control mt-3">Submit</button>
+        </form>
+
+        <!-- Project Employees Table -->
+        <h3>Project Employees List</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Emp Project ID</th>
+                    <th>Project ID</th>
+                    <th>Employee ID</th>
+                    <th>Assigned Date</th>
+                    <th>Role</th>
+                    <th>Is Active</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let projEmp of ProjectsEmployees">
+                    <td class="text-center lead">{{projEmp.empProjectId}}</td>
+                    <td class="text-center lead">{{projEmp.projectId}}</td>
+                    <td class="text-center lead">{{projEmp.empId}}</td>
+                    <td class="text-center lead">{{projEmp.assignedDate | date:'dd/MM/yyyy'}}</td>
+                    <td class="text-center lead">{{projEmp.role}}</td>
+                    <td class="text-center lead">{{projEmp.isActive}}</td>
+                    <td class="text-center lead"><button class="btn btn-outline-info" (click)="editEmpProj(projEmp.empProjectId)" >Edit</button></td>
+                    <td class="text-center lead"><button class="btn btn-outline-danger" (click)="deleteProjEmp(projEmp.empProjectId)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 

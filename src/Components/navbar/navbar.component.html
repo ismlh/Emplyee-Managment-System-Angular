@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/Products">Market</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto w-50 justify-content-evenly   mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/employees">Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/projects">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/Project-Employee">Project-Employee</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" (click)="logout()">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
